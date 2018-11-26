@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "astb01/my-cv"
-    registryCredential = "dockerhub"
+    registryCredential = "docker-credentials"
     dockerImage = ""
   }
 
@@ -37,15 +37,27 @@ pipeline {
         sh "docker tag astb01/my-cv:${env.BUILD_ID} astb01/my-cv:latest"
       }
     }
-  }
-
-  post {
-    success {
-      withCredentials([usernamePassword(credentialsId: "docker-credentials", usernameVariable: "USERNAME", passwordVariable: "PASSWORD")]) {
-        sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-        sh "docker push astb01/my-cv:${env.BUILD_ID}"
-        sh "docker push astb01/my-cv:latest"
+    stage("Publish") {
+      when {
+        branch "master"
+      }
+      steps {
+        withDockerRegistry([credentialsId: "docker-credentials", url: ""]) {
+          sh "docker push astb01/my-cv:${env.BUILD_ID}"
+          sh "docker push astb01/my-cv:latest"
+        }
       }
     }
   }
+
+  //post {
+  //  success {
+      //withCredentials([usernamePassword(credentialsId: "docker-credentials", usernameVariable: "USERNAME", passwordVariable: "PASSWORD")]) {
+      //  sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+      //  sh "docker push astb01/my-cv:${env.BUILD_ID}"
+      //  sh "docker push astb01/my-cv:latest"
+
+  //    }
+  //  }
+  //}
 }
