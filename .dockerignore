@@ -4,3 +4,4 @@ Jenkinsfile
 .nyc_output
 tests
 .eslintrc.js
+.DS_Store
