@@ -1,0 +1,4 @@
+node_modules/
+resume.*js
+bundle.min.js
+vendor/

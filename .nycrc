@@ -1,0 +1,11 @@
+{
+    "exclude": [
+        "tests/**/*-spec.js",
+        ".eslintrc.js",
+        "app.js"
+    ],
+    "reporter": [
+        "text",
+        "html"
+    ]
+}
