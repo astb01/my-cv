@@ -16,6 +16,14 @@ pipeline {
         git "git@github.com:astb01/my-cv.git"
       }
     }
+
+    stage("Install dependencies") {
+      steps {
+        echo "Installing dependencies ..."
+        sh "npm install && npm cache verify"
+      }
+    }
+
     stage("Test Application") {
       steps {
         echo "Running tests ..."
