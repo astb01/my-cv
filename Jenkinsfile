@@ -35,6 +35,7 @@ pipeline {
         echo "Building Docker image for my-cv ..."
         sh "docker build --tag astb01/my-cv:${env.BUILD_ID} ."
         sh "docker tag astb01/my-cv:${env.BUILD_ID} astb01/my-cv:latest"
+        echo "Built Docker image astb01/my-cv:${env.BUILD_ID}"
       }
     }
     // stage("Publish") {
