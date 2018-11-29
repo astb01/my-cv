@@ -23,3 +23,5 @@ npm test
 ```
 
 The tests make use of **Mocha** and **Cheerio JS**.
+
+Loretto
