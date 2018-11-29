@@ -6,7 +6,7 @@
     "start": "nodemon app.js",
     "lint": "eslint --fix *.js",
     "dev": "npm run lint && npm start",
-    "test": "nyc mocha --reporter spec tests/unit/*-spec.js --timeout 10000 --exit || true"
+    "test": "nyc --reporter=html --reporter=text --lines 90 --per-file mocha tests/unit/*-spec.js --timeout 10000 --exit || true"
   },
   "dependencies": {
     "cookie-parser": "^1.4.3",
